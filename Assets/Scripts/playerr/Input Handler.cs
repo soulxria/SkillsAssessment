@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InputHandler : MonoBehaviour
 {
-    public PlayerMove playerController;
+    public PlayerMove CharacterController;
 
     private InputAction _moveAction, _jumpAction;
 
@@ -15,7 +15,7 @@ public class InputHandler : MonoBehaviour
         _moveAction = InputSystem.actions.FindAction("Move");
         _jumpAction = InputSystem.actions.FindAction("Jump");
 
-        _jumpAction.performed = OnJumpPerformed();
+        _jumpAction.performed += OnJumpPerformed;
 
         //Cursor.visible = false;
     }
@@ -24,10 +24,11 @@ public class InputHandler : MonoBehaviour
     void Update()
     {
         Vector2 movementVector = _moveAction.ReadValue<Vector2>();
+        CharacterController.Move(movementVector);
     }
 
     private void OnJumpPerformed(InputAction.CallbackContext context)
     {
-
+        CharacterController.Jump();
     }
 }
