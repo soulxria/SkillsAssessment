@@ -6,13 +6,24 @@ public class PlayerDeath : MonoBehaviour
 {
     public PlayerMove thePlayer;
 
-    private void OnCollisionEnter(Collision other)
+    private void Update()
     {
-        Debug.Log("touched the ground");
-        if (other.gameObject.name == "Plane")
+        bool dead = (Physics.Raycast(thePlayer.gameObject.transform.position, Vector3.down, 1f, LayerMask.NameToLayer("DeathPlane")));
+        if (dead)
         {
-            Debug.Log("death plane hit");
-            thePlayer.Death();
+            Death();
         }
+    }
+
+    public void Death()
+    {
+        this.gameObject.SetActive(false);
+        Respawn();
+    }
+
+    public void Respawn()
+    {
+        this.gameObject.SetActive(true);
+        this.gameObject.transform.position = thePlayer.spawnPoint.position;
     }
 }

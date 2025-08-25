@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
     private CharacterController  playerController;
     public TextMeshProUGUI objText;
     public TextMeshProUGUI nameText;
-    private Transform spawnPoint;
+    public Transform spawnPoint;
 
 
 
@@ -19,6 +19,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         playerController = GetComponent<CharacterController>();
+        Transform spawnPoint = this.gameObject.transform;
     }
 
     public void Move(Vector2 movementVector)
@@ -29,7 +30,7 @@ public class PlayerMove : MonoBehaviour
 
         verticalVelocity = verticalVelocity + gravityVal * Time.deltaTime;
         playerController.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
-        Transform spawnPoint = this.gameObject.transform;
+        
     }
 
     // Update is called once per frame
@@ -67,16 +68,6 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void Death()
-    {
-        this.gameObject.SetActive(false);
-        Respawn();
-    }
-
-    public void Respawn()
-    {
-        this.gameObject.SetActive(true);
-        this.gameObject.transform.position = spawnPoint.position;
-    }
+    
  
 }
