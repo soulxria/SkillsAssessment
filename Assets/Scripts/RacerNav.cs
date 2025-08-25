@@ -51,12 +51,13 @@ public class RacerNav : MonoBehaviour
 
     void OnTriggerEnter(Collider other) //check if passing a checkpoint or finish line
     {
-        int trueCheckpoint = index + 1;
+        int trueCheckpoint = 0;
         if (other.gameObject.name == string.Format("Checkpoint{0}", trueCheckpoint) )
         {
+            trueCheckpoint = index + 1;
             finLine = true; //turns on ability to change lap
             CheckRacer(); //gives racer number to manager
-            checkpointManager.adjustUI(trueCheckpoint);
+            checkpointManager.changeCheckpoint(this.gameObject, trueCheckpoint);
             if (index != 2)
             {
                 index += 1;

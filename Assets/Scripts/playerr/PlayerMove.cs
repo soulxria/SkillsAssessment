@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerMove : MonoBehaviour
 {
     private CharacterController  playerController;
+    public TextMeshProUGUI objText;
+    public TextMeshProUGUI nameText;
 
     public float movementSpeed = 5f, jumpForce = 10f, gravityVal = -30f;
     private float verticalVelocity;
@@ -30,6 +33,26 @@ public class PlayerMove : MonoBehaviour
         if (playerController.isGrounded)
         {
             verticalVelocity = jumpForce;
+        }
+    }
+
+    public void HotKeys()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            objText.gameObject.SetActive(true);
+            if (objText.gameObject.activeSelf == true)
+            {
+                objText.gameObject.SetActive(false);
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            nameText.gameObject.SetActive(true);
+            if (objText.gameObject.activeSelf ==  true)
+            {
+                objText.gameObject.SetActive(false);
+            }
         }
     }
  

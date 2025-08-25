@@ -4,17 +4,27 @@ using UnityEngine;
 
 public class CheckpointManager : MonoBehaviour
 {
-    
-    public Transform[] racers;
+    public GameObject[] racers;
+    public Dictionary<GameObject, int> checkpoints = new Dictionary<GameObject, int>();
     int index;
     int racer;
     int lapNum;
 
     //racer lapcounts
-    int r1;
-    int r2;
-    int r3;
-    int r4;
+    public int r1, r2, r3, r4;
+
+    void Start()
+    {
+        checkpoints.Add(racers[0], 0); //racer1
+        checkpoints.Add(racers[1], 0); //racer2
+        checkpoints.Add(racers[2], 0); //racer3
+        checkpoints.Add(racers[3], 0); //racer4
+    }
+
+    public void changeCheckpoint(GameObject racer, int checkpointNum)
+    {
+        checkpoints[racer] = checkpointNum;
+    }
 
     public void GetRacerNum(int racerNum)
     {
@@ -42,7 +52,7 @@ public class CheckpointManager : MonoBehaviour
 
     public void adjustUI(int trueCheckpoint)
     {
-        //text stuff using racers[racer-1] and trueCheckpoint
+        
     }
 
 }
