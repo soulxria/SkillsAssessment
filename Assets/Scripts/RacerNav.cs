@@ -8,28 +8,28 @@ public class RacerNav : MonoBehaviour
     public Transform[] checkPoints;
     public int index;
     Transform curCheckpoint;
-    private double speed;
     public int lapCount = 1;
     private bool finLine = false;
 
     public CheckpointManager checkpointManager;
-    public int racerNum;
     private UnityEngine.AI.NavMeshAgent racerAgent;
-    public Transform target;
+    public Vector3 target;
 
     string racerNumString;
     // Start is called before the first frame update
     void Start()
     {
-        SetRandomSpeed();
+        
         racerAgent = GetComponent<UnityEngine.AI.NavMeshAgent>();
-
-        racerAgent.SetDestination(checkPoints[0].position);
+        SetRandomSpeed();
+        target = checkPoints[0].position; 
+        racerAgent.SetDestination(target);
     }
 
     void SearchNextCheckpoint()
     {
-        racerAgent.SetDestination(curCheckpoint.position);
+        target = curCheckpoint.position;
+        racerAgent.SetDestination(target);
     }
 
     void SetRandomSpeed()
@@ -43,7 +43,7 @@ public class RacerNav : MonoBehaviour
         var match = Regex.Match(this.gameObject.name, @"\d+");
         
         racerNumString += match;
-        if (int.TryParse(racerNumString, out racerNum)){
+        if (int.TryParse(racerNumString, out int racerNum)){
             checkpointManager.GetRacerNum(racerNum);
         }
         
@@ -51,24 +51,24 @@ public class RacerNav : MonoBehaviour
 
     void OnTriggerEnter(Collider other) //check if passing a checkpoint or finish line
     {
-        int trueCheckpoint = 0;
-        if (other.gameObject.name == string.Format("Checkpoint{0}", trueCheckpoint) )
+        Debug.Log("contact made");
+        int trueCheckpoint = 1;
+        if (other.gameObject.name == "Checkpoint" + trueCheckpoint)
         {
-            trueCheckpoint = index + 1;
+            Debug.Log("checkpoint 1 hit");
             finLine = true; //turns on ability to change lap
             CheckRacer(); //gives racer number to manager
             checkpointManager.changeCheckpoint(this.gameObject, trueCheckpoint);
-            if (index != 2)
+            if (trueCheckpoint < 3)
             {
-                index += 1;
+                trueCheckpoint += 1;
             }
             else
             {
-                index = 0;
+                trueCheckpoint = 1;
             }
-            curCheckpoint = checkPoints[index];
+            curCheckpoint = checkPoints[trueCheckpoint-1];
             SearchNextCheckpoint();
-
         }
 
         if(other.gameObject.name == "Finish Line" && finLine)
