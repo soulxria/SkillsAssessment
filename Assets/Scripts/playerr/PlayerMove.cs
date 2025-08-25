@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class PlayerMove : MonoBehaviour
 {
     private CharacterController  playerController;
     public TextMeshProUGUI objText;
     public TextMeshProUGUI nameText;
+    private Transform spawnPoint;
+
+
 
     public float movementSpeed = 5f, jumpForce = 10f, gravityVal = -30f;
     private float verticalVelocity;
@@ -25,6 +29,7 @@ public class PlayerMove : MonoBehaviour
 
         verticalVelocity = verticalVelocity + gravityVal * Time.deltaTime;
         playerController.Move(new Vector3(0, verticalVelocity, 0) * Time.deltaTime);
+        Transform spawnPoint = this.gameObject.transform;
     }
 
     // Update is called once per frame
@@ -36,24 +41,42 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void HotKeys()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.O))
         {
-            objText.gameObject.SetActive(true);
             if (objText.gameObject.activeSelf == true)
             {
                 objText.gameObject.SetActive(false);
             }
+            else
+            {
+                objText.gameObject.SetActive(true);
+            }
         }
         if (Input.GetKeyDown(KeyCode.P))
         {
-            nameText.gameObject.SetActive(true);
-            if (objText.gameObject.activeSelf ==  true)
+            if (nameText.gameObject.activeSelf == true)
             {
-                objText.gameObject.SetActive(false);
+                nameText.gameObject.SetActive(false);
+            }
+            else
+            {
+                nameText.gameObject.SetActive(true);
             }
         }
+    }
+
+    public void Death()
+    {
+        this.gameObject.SetActive(false);
+        Respawn();
+    }
+
+    public void Respawn()
+    {
+        this.gameObject.SetActive(true);
+        this.gameObject.transform.position = spawnPoint.position;
     }
  
 }

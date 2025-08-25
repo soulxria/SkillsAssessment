@@ -14,6 +14,7 @@ public class RacerNav : MonoBehaviour
     public CheckpointManager checkpointManager;
     private UnityEngine.AI.NavMeshAgent racerAgent;
     public Vector3 target;
+    int trueCheckpoint = 1;
 
     string racerNumString;
     // Start is called before the first frame update
@@ -24,12 +25,21 @@ public class RacerNav : MonoBehaviour
         SetRandomSpeed();
         target = checkPoints[0].position; 
         racerAgent.SetDestination(target);
+        checkpointManager.SetLapCount(lapCount, this);
     }
 
-    void SearchNextCheckpoint()
+    void SearchNextCheckpoint(int complexity)
     {
-        target = curCheckpoint.position;
-        racerAgent.SetDestination(target);
+        if (complexity == 1)
+        {
+            target = curCheckpoint.position;
+            racerAgent.SetDestination(target);
+        }
+        else
+        {
+            target = curCheckpoint.position;
+            racerAgent.SetDestination(target);
+        }
     }
 
     void SetRandomSpeed()
@@ -52,7 +62,7 @@ public class RacerNav : MonoBehaviour
     void OnTriggerEnter(Collider other) //check if passing a checkpoint or finish line
     {
         Debug.Log("contact made");
-        int trueCheckpoint = 1;
+        
         if (other.gameObject.name == "Checkpoint" + trueCheckpoint)
         {
             Debug.Log("checkpoint 1 hit");
@@ -62,19 +72,24 @@ public class RacerNav : MonoBehaviour
             if (trueCheckpoint < 3)
             {
                 trueCheckpoint += 1;
+                curCheckpoint = checkPoints[trueCheckpoint - 1];
+                SearchNextCheckpoint(1);
             }
             else
             {
                 trueCheckpoint = 1;
+                curCheckpoint = checkPoints[3];
+                SearchNextCheckpoint(2);
             }
-            curCheckpoint = checkPoints[trueCheckpoint-1];
-            SearchNextCheckpoint();
+            
         }
 
         if(other.gameObject.name == "Finish Line" && finLine)
         {
             lapCount += 1;
             checkpointManager.SetLapCount(lapCount, this);
+            curCheckpoint = checkPoints[trueCheckpoint - 1];
+            SearchNextCheckpoint(1);
 
             if (lapCount == 3)
             {

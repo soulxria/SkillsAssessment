@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 86157988}
   - component: {fileID: 86157987}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 110723702}
   - component: {fileID: 110723701}
   - component: {fileID: 110723700}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Racer4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 133891555}
   - component: {fileID: 133891554}
   - component: {fileID: 133891557}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Racer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -807,6 +807,7 @@ GameObject:
   - component: {fileID: 209933142}
   - component: {fileID: 209933141}
   - component: {fileID: 209933140}
+  - component: {fileID: 209933143}
   m_Layer: 0
   m_Name: Finish Line
   m_TagString: Untagged
@@ -901,6 +902,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 209933138}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &209933143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 209933138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 55
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_GenerateLinks: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_MinRegionArea: 2
+  m_NavMeshData: {fileID: 23800000, guid: 9a127aeda43953b46b15c314b399140e, type: 2}
+  m_BuildHeightMesh: 0
 --- !u!1 &221616349
 GameObject:
   m_ObjectHideFlags: 0
@@ -1112,7 +1144,7 @@ GameObject:
   - component: {fileID: 422003251}
   - component: {fileID: 422003250}
   - component: {fileID: 422003249}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1322,7 +1354,7 @@ GameObject:
   - component: {fileID: 496832906}
   - component: {fileID: 496832905}
   - component: {fileID: 496832904}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Racer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1749,8 +1781,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 782856b4f8184c94bba48a355758ca6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objText: {fileID: 0}
-  nameText: {fileID: 0}
+  objText: {fileID: 1849852471}
+  nameText: {fileID: 86157987}
   movementSpeed: 5
   jumpForce: 10
   gravityVal: -30
@@ -1766,7 +1798,7 @@ GameObject:
   - component: {fileID: 621584056}
   - component: {fileID: 621584055}
   - component: {fileID: 621584054}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Racer3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1978,7 +2010,7 @@ GameObject:
   - component: {fileID: 911264671}
   - component: {fileID: 911264670}
   - component: {fileID: 911264669}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2080,7 +2112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 916818735}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Checkpoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2475,7 +2507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1295752576}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Racers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2530,7 +2562,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af7102a1acd18448ae9ec6a5c845aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  racers: []
+  racers:
+  - {fileID: 133891552}
+  - {fileID: 496832902}
+  - {fileID: 621584052}
+  - {fileID: 110723698}
   r1: 0
   r2: 0
   r3: 0
@@ -2563,7 +2599,7 @@ GameObject:
   - component: {fileID: 1445690832}
   - component: {fileID: 1445690831}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: Racer stuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3198,7 +3234,7 @@ GameObject:
   - component: {fileID: 1849852472}
   - component: {fileID: 1849852471}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: OBJ
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3333,7 +3369,7 @@ GameObject:
   - component: {fileID: 2037918261}
   - component: {fileID: 2037918260}
   - component: {fileID: 2037918259}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Cube (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
