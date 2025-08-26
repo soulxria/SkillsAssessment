@@ -8,9 +8,10 @@ public class PlayerDeath : MonoBehaviour
 
     private void Update()
     {
-        bool dead = (Physics.Raycast(thePlayer.gameObject.transform.position, Vector3.down, 1f, LayerMask.NameToLayer("DeathPlane")));
+        bool dead = (Physics.Raycast(thePlayer.gameObject.transform.position, Vector3.down, 1.5f, LayerMask.GetMask("DeathPlane")));
         if (dead)
         {
+            Debug.Log("your mom");
             Death();
         }
     }
@@ -24,6 +25,6 @@ public class PlayerDeath : MonoBehaviour
     public void Respawn()
     {
         this.gameObject.SetActive(true);
-        this.gameObject.transform.position = thePlayer.spawnPoint.position;
+        this.gameObject.transform.position = thePlayer.spawnPoint;
     }
 }

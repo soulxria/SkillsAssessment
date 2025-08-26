@@ -4,6 +4,12 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Puzzle1.unity
+    guid: 7b3d54048b7b53b46bf541c3043dea8b
+  - enabled: 1
+    path: Assets/Scenes/Puzzle2.unity
+    guid: 36fb53042ffa8fc4095993d18a7323a7
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 565c823017b49eb43a887b5661e2309f, type: 3}

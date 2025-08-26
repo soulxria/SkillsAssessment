@@ -12,6 +12,7 @@ public class RacerNav : MonoBehaviour
     private bool finLine = false;
 
     public CheckpointManager checkpointManager;
+    public RaceUI raceUI;
     private UnityEngine.AI.NavMeshAgent racerAgent;
     public Vector3 target;
     int trueCheckpoint = 1;
@@ -28,7 +29,9 @@ public class RacerNav : MonoBehaviour
         checkpointManager.SetLapCount(lapCount, this);
     }
 
-    void SearchNextCheckpoint(int complexity)
+
+
+    void SearchNextCheckpoint(int complexity) //accounts for if finish line is next
     {
         if (complexity == 1)
         {
@@ -44,7 +47,7 @@ public class RacerNav : MonoBehaviour
 
     void SetRandomSpeed()
     {
-        racerAgent.speed = Random.Range(3.0f,5.0f);
+        racerAgent.speed = Random.Range(5.0f,6.5f);
     }
 
 
@@ -87,13 +90,15 @@ public class RacerNav : MonoBehaviour
         if(other.gameObject.name == "Finish Line" && finLine)
         {
             lapCount += 1;
+            SetRandomSpeed();
             checkpointManager.SetLapCount(lapCount, this);
             curCheckpoint = checkPoints[trueCheckpoint - 1];
             SearchNextCheckpoint(1);
 
-            if (lapCount == 3)
+            if (lapCount > 3)
             {
                 racerAgent.isStopped = true;
+                raceUI.showPlacement(this);
             }
         }
     }

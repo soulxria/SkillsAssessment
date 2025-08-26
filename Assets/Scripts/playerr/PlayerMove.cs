@@ -9,7 +9,7 @@ public class PlayerMove : MonoBehaviour
     private CharacterController  playerController;
     public TextMeshProUGUI objText;
     public TextMeshProUGUI nameText;
-    public Transform spawnPoint;
+    public Vector3 spawnPoint;
 
 
 
@@ -19,7 +19,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         playerController = GetComponent<CharacterController>();
-        Transform spawnPoint = this.gameObject.transform;
+        spawnPoint = gameObject.transform.position;
     }
 
     public void Move(Vector2 movementVector)
